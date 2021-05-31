@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson2-calculator</string>
+    <string name="app_name">Lesson2/3-calculator</string>
     <string name="result">Результат вычислений</string>
     <string name="key_1">1</string>
     <string name="key_2">2</string>
