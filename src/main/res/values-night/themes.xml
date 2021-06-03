@@ -12,5 +12,26 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
+    <style name="MyCoolStyle" parent="Theme.Android1">
+        <item name="android:textColor">@color/black</item>
+        <item name="cornerRadius">@dimen/cornerRadius</item>
+    </style>
+
+    <style name="MySecondStyle" parent="Theme.Android1">
+        <item name="android:backgroundTint">#9400D3</item>
+    </style>
+
+    <style name="AppThemeLight" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">#e91e63</item>
+        <item name="colorPrimaryDark">#b0003a</item>
+        <item name="colorAccent">#ff6090</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.MaterialComponents">
+        <item name="android:textColor">#000000</item>
     </style>
 </resources>
