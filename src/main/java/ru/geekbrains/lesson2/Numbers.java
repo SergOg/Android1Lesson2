@@ -79,8 +79,8 @@ public class Numbers implements Parcelable {
         this.number2 = number2;
     }
 
-    public void operations(int o) {
-        switch (o) {
+    public void operations(int operationNumber) {
+        switch (operationNumber) {
             case 0:
                 result = 0;
                 break;

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Numbers numbers;    //Числа для операций
     private int num = 0;
 
-    private final static String keyNumbers = "Numbers";
+    private final static String KEY_NUMBERS = "Numbers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onSaveInstanceState(@NonNull Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
-        instanceState.putParcelable(keyNumbers, numbers);
+        instanceState.putParcelable(KEY_NUMBERS, numbers);
     }
 
     // Восстановление данных
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
         super.onRestoreInstanceState(instanceState);
-        numbers = (Numbers) instanceState.getParcelable(keyNumbers);
+        numbers = (Numbers) instanceState.getParcelable(KEY_NUMBERS);
         setTextButtons();
     }
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_text">30sp</dimen>
+    <dimen name="textSize">30sp</dimen>
     <dimen name="margin_button">2dp</dimen>
+    <dimen name="textActionSize">30sp</dimen>
+    <dimen name="cornerRadius">23dp</dimen>
 </resources>

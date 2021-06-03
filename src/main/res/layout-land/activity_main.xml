@@ -24,112 +24,97 @@
             android:gravity="right"
             android:text="@string/result"
             android:textColor="@color/white"
-            android:textSize="@dimen/button_text" />
+            android:textSize="@dimen/textSize" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_1"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_1"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_1" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_2"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_2"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_2" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_3"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_3"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_3" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_4"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_4"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_4" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_del"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_dev"
-            android:textSize="@dimen/button_text" />
+            style="@style/MySecondStyle"
+            android:text="@string/key_dev" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_minus"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_minus"
-            android:textSize="@dimen/button_text" />
+            style="@style/MySecondStyle"
+            android:text="@string/key_minus" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_5"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_5"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_5" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_6"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_6"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_6" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_7"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_7"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_7" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_8"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_8"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_8" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_multi"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_multi"
-            android:textSize="@dimen/button_text" />
+            style="@style/MySecondStyle"
+            android:text="@string/key_multi" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_plus"
-            android:layout_gravity="fill"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_plus"
-            android:textSize="@dimen/button_text" />
+            style="@style/MySecondStyle"
+            android:text="@string/key_plus" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_9"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_9"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_9" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_0"
+            style="@style/MyCoolStyle"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_0"
-            android:textSize="@dimen/button_text" />
+            android:text="@string/key_0" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_00"
-            android:layout_margin="@dimen/margin_button"
-            android:text="@string/key_00"
-            android:textSize="@dimen/button_text" />
+            style="@style/MyCoolStyle"
+            android:text="@string/key_00" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_point"
             android:layout_margin="@dimen/margin_button"
             android:text="@string/key_point"
-            android:textSize="@dimen/button_text" />
+            android:textSize="@dimen/textSize" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_equal"
             android:layout_gravity="fill"
             android:layout_margin="@dimen/margin_button"
+            android:backgroundTint="#A0A0A0"
             android:text="@string/key_equal"
-            android:textSize="@dimen/button_text" />
+            android:textSize="@dimen/textActionSize" />
     </GridLayout>
 </FrameLayout>
