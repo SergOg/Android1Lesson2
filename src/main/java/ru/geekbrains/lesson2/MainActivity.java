@@ -7,22 +7,29 @@ package ru.geekbrains.lesson2;
 //Constraintlayout избыточен для данной задачи и не оптимален, хотя перспективный с большими возможностями.
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView textView;  //Поле результата
     private Numbers numbers;    //Числа для операций
-    private int num = 0;
+    private int num = 0;        //Признак первого числа
 
     private final static String KEY_NUMBERS = "Numbers";
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         numbers = new Numbers();
         initViews();
+
+        sharedPreferences = getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE);
+
+        checkNightModeActivated();
+    }
+
+    public void checkNightModeActivated() {
+        if (sharedPreferences.getBoolean("keyNightMode", false)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     // Сохранение данных
@@ -47,12 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTextButtons();
     }
 
-    // Отображение данных на экране только одного значения, например, введенных цифр
-    // Далее, т.к. не ввели операцию, то и введенные цифры не стали числом "Number1"
-    // Придется вводить первое число еще раз после поворота экрана
-    // Если ввели операцию и повернули экран, она не отображается, но дальнейшая логика выполняется
     private void setTextButtons() {
-        setTextButton(textView, numbers.getNumber());
+        setTextButton(textView, String.valueOf(numbers.getNumber1()));
     }
 
     // Установить текст на TextView
@@ -69,17 +84,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void makeOperation(String strIn, int i) {
-        int a = 0;
+        double a = 0;
         if (num == 1) {
             String s = numbers.getNumber();
-            a = Integer.parseInt(s);
+            try {
+                a = Double.parseDouble(s);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Неверный формат строки!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (!numbers.getNumber().equals("")) {
+            String s = numbers.getNumber();
+            a = Double.parseDouble(s);
+            num = 1;
         }
         if ((numbers.getNumber1() == 0) && (num == 1)) {
             numbers.setNumber1(a);
             if (i != 0) {
                 setTextButton(textView, strIn);
             }
-
         } else if ((numbers.getNumber2() == 0) && (num == 1)) {
             numbers.setNumber2(a);
             numbers.operations(numbers.getOperation());
@@ -90,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 numbers.setNumber1(numbers.getResult());
             }
-        }
+        } else Toast.makeText(this, "Введите число", Toast.LENGTH_SHORT).show();
         numbers.setNumber("");
         num = 0;
         numbers.setOperation(i);
@@ -99,41 +121,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
+        setTextButton(textView, "");
         switch (v.getId()) {
-            case R.id.button_1:
-                addNumToString("1");
-                break;
-            case R.id.button_2:
-                addNumToString("2");
-                break;
-            case R.id.button_3:
-                addNumToString("3");
-                break;
-            case R.id.button_4:
-                addNumToString("4");
-                break;
-            case R.id.button_5:
-                addNumToString("5");
-                break;
-            case R.id.button_6:
-                addNumToString("6");
-                break;
-            case R.id.button_7:
-                addNumToString("7");
-                break;
-            case R.id.button_8:
-                addNumToString("8");
-                break;
-            case R.id.button_9:
-                addNumToString("9");
-                break;
-            case R.id.button_0:
-                addNumToString("0");
-                break;
             case R.id.button_00:
                 addNumToString("00");
                 break;
-            case R.id.button_del:
+            case R.id.button_div:
                 makeOperation("/", 1);
                 break;
             case R.id.button_multi:
@@ -149,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 makeOperation("=", 0);
                 break;
             case R.id.button_point:
-                setTextButton(textView, ",");
+                addNumToString(".");
                 break;
             default:
                 setTextButton(textView, "?");
@@ -162,32 +155,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonsClickListener();
     }
 
+    private final int[] numberButtonIds = new int[]{R.id.button_0, R.id.button_1, R.id.button_2, R.id.button_3,
+            R.id.button_4, R.id.button_5, R.id.button_6, R.id.button_7, R.id.button_8, R.id.button_9};
+
+    @SuppressLint("SetTextI18n")
+    private void setNumberButtonListeners() {
+        for (int i = 0; i < numberButtonIds.length; i++) {
+            findViewById(numberButtonIds[i]).setOnClickListener(v -> {
+                Button btn = (Button) v;
+                addNumToString(btn.getText().toString());
+            });
+        }
+    }
+
     private void buttonsClickListener() {
-        Button button1 = findViewById(R.id.button_1);
-        button1.setOnClickListener(this);
-        Button button2 = findViewById(R.id.button_2);
-        button2.setOnClickListener(this);
-        Button button3 = findViewById(R.id.button_3);
-        button3.setOnClickListener(this);
-        Button button4 = findViewById(R.id.button_4);
-        button4.setOnClickListener(this);
-        Button button5 = findViewById(R.id.button_5);
-        button5.setOnClickListener(this);
-        Button button6 = findViewById(R.id.button_6);
-        button6.setOnClickListener(this);
-        Button button7 = findViewById(R.id.button_7);
-        button7.setOnClickListener(this);
-        Button button8 = findViewById(R.id.button_8);
-        button8.setOnClickListener(this);
-        Button button9 = findViewById(R.id.button_9);
-        button9.setOnClickListener(this);
-        Button button0 = findViewById(R.id.button_0);
-        button0.setOnClickListener(this);
+        setNumberButtonListeners();
         Button button00 = findViewById(R.id.button_00);
         button00.setOnClickListener(this);
         Button buttonEqual = findViewById(R.id.button_equal);
         buttonEqual.setOnClickListener(this);
-        Button buttonDel = findViewById(R.id.button_del);
+        Button buttonDel = findViewById(R.id.button_div);
         buttonDel.setOnClickListener(this);
         Button buttonMulti = findViewById(R.id.button_multi);
         buttonMulti.setOnClickListener(this);
@@ -197,5 +184,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPlus.setOnClickListener(this);
         Button buttonPoint = findViewById(R.id.button_point);
         buttonPoint.setOnClickListener(this);
+    }
+
+    public void press(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }

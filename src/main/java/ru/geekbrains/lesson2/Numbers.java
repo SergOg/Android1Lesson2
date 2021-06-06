@@ -6,9 +6,9 @@ import android.os.Parcelable;
 public class Numbers implements Parcelable {
 
     private String number;
-    private int number1;
-    private int number2;
-    private int result;
+    private double number1;
+    private double number2;
+    private double result;
     private int operation;
 
     public Numbers() {
@@ -21,9 +21,9 @@ public class Numbers implements Parcelable {
 
     protected Numbers(Parcel in) {
         number = in.readString();
-        number1 = in.readInt();
-        number2 = in.readInt();
-        result = in.readInt();
+        number1 = in.readDouble();
+        number2 = in.readDouble();
+        result = in.readDouble();
         operation = in.readInt();
     }
 
@@ -51,7 +51,7 @@ public class Numbers implements Parcelable {
         this.operation = operation;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 
@@ -59,11 +59,11 @@ public class Numbers implements Parcelable {
         return number;
     }
 
-    public int getNumber1() {
+    public double getNumber1() {
         return number1;
     }
 
-    public int getNumber2() {
+    public double getNumber2() {
         return number2;
     }
 
@@ -71,11 +71,11 @@ public class Numbers implements Parcelable {
         this.number = number;
     }
 
-    public void setNumber1(int number1) {
+    public void setNumber1(double number1) {
         this.number1 = number1;
     }
 
-    public void setNumber2(int number2) {
+    public void setNumber2(double number2) {
         this.number2 = number2;
     }
 
@@ -109,9 +109,9 @@ public class Numbers implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(number);
-        dest.writeInt(number1);
-        dest.writeInt(number2);
-        dest.writeInt(result);
+        dest.writeDouble(number1);
+        dest.writeDouble(number2);
+        dest.writeDouble(result);
         dest.writeInt(operation);
     }
 }
